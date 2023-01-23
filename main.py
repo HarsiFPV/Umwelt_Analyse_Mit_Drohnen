@@ -115,16 +115,6 @@ def import_csv_to_db(csv_file, url, db, collection):
         for row in reader:
             collection.insert_one(row)
 
-def run_function():
-    # Insert code for the function you want to run here
-
-
-app = QApplication(sys.argv)
-window = QWidget()
-button = QPushButton('Clear Folder', window)
-button.clicked.connect(run_function)
-window.show()
-sys.exit(app.exec_())
 
 
 clean_folder(r"C:\Users\user\Documents\Python")

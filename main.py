@@ -1,20 +1,13 @@
 import os
-from os import listdir
 from os.path import isfile, join
 import csv
-import shutil
 import requests
-import psycopg2
-import psycopg2.extras
 import pandas as pd
 import json
 from PIL import Image, ExifTags, TiffTags
 import pymongo
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-
-
-
 
 
 def clean_folder(folder_path):
@@ -98,6 +91,7 @@ def import_to_db(txt_file, url, db, collection):
         document = {"data": line}
         collection.insert_one(document)
 
+
 def import_csv_to_db(csv_file, url, db, collection):
     # Connect to the MongoDB server
     client = pymongo.MongoClient(url)
@@ -116,7 +110,6 @@ def import_csv_to_db(csv_file, url, db, collection):
             collection.insert_one(row)
 
 
-
 clean_folder(r"C:\Users\user\Documents\Python")
 
 get_files(r"C:\Users\Tristan\Pictures\Project")
@@ -124,7 +117,7 @@ get_files(r"C:\Users\Tristan\Pictures\Project")
 write_to_csv(r"C:\Users\Tristan\Documents\Project", 'datei_path.csv', [files])
 
 extract_image_metadata(r"C:\Photos ice nath\Relevé 2",
-    r"C:\Users\Tristan\Documents\Project\metadata.txt")
+                       r"C:\Users\Tristan\Documents\Project\metadata.txt")
 
 import_to_db(r"C:\Users\Tristan\Documents\Project\metadata.txt", "mongodb://localhost:27017/", "paths", "metadata_path")
 import_to_db(r"C:\Users\Tristan\Documents\Project\datei_path.csv", "mongodb://localhost:27017/", "paths", "file_path")

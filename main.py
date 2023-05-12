@@ -74,9 +74,17 @@ def import_to_db(txt_file, url, db, collection):
     # Connect to the MongoDB server
     client = pymongo.MongoClient(url)
 
-    # Select the database and collection where you want to import the data
+    # Select the database
     db = client[db]
+
+    # Check if the collection exists, create it if it doesn't
+    if collection not in db.list_collection_names():
+        db.create_collection(collection)
     collection = db[collection]
+
+    # Clear the collection
+    collection.delete_many({})
+    print(f"Cleared the collection.")
 
     # Open the text file
     with open(txt_file, "r") as file:
@@ -109,7 +117,17 @@ def import_csv_to_db(csv_file, url, db, collection):
         for row in reader:
             collection.insert_one(row)
 
+def delete_non_matching_paths(client, path_prefix):
+    db = client.paths
+    collection = db.file_path
 
+    # Find all objects that match the path prefix
+    matching_objects = collection.find({"data": {"$regex": "^{}.*".format(path_prefix)}})
+
+    # Delete all objects that do not match the path prefix
+    collection.delete_many({"data": {"$not": {"$regex": "^{}.*".format(path_prefix)}}})
+
+<<<<<<< HEAD
 clean_folder(r"C:\Users\user\Documents\Python")
 
 get_files(r"C:\Users\Tristan\Pictures\Project")
@@ -121,3 +139,19 @@ extract_image_metadata(r"C:\Photos ice nath\Relevé 2",
 
 import_to_db(r"C:\Users\Tristan\Documents\Project\metadata.txt", "mongodb://localhost:27017/", "paths", "metadata_path")
 import_to_db(r"C:\Users\Tristan\Documents\Project\datei_path.csv", "mongodb://localhost:27017/", "paths", "file_path")
+=======
+
+#clean_folder(r"C:\Users\Tristan\Documents\Project")
+#
+#get_files(r"D:\DCIM\100MEDIA")
+#
+#write_to_csv(r"C:\Users\Tristan\Documents\Project", 'datei_path.csv', [files])
+#
+#extract_image_metadata(r"D:\DCIM\100MEDIA",
+#    r"C:\Users\Tristan\Documents\Project\metadata.txt")
+#
+#import_to_db(r"C:\Users\Tristan\Documents\Project\metadata.txt", "mongodb://localhost:27017/", "paths", "metadata_path")
+#import_to_db(r"C:\Users\Tristan\Documents\Project\datei_path.csv", "mongodb://localhost:27017/", "paths", "file_path")
+
+#delete_non_matching_paths("mongodb://localhost:27017/","D:\DCIM\100MEDIA*")
+>>>>>>> 942b8409cffc26b871b4d39c46a5ff0766a59c62

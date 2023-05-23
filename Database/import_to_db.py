@@ -29,3 +29,5 @@ def import_to_db(txt_file, url, db, collection):
     for line in lines:
         document = {"data": line}
         collection.insert_one(document)
+
+import_to_db(r"C:\Users\Tristan\Documents\Project\datei_path.csv", "mongodb://localhost:27017/", "paths", "file_path")

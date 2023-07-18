@@ -30,4 +30,5 @@ def import_to_db(txt_file, url, db, collection):
         document = {"data": line}
         collection.insert_one(document)
 
-import_to_db(r"C:\Users\Tristan\Documents\Project\datei_path.csv", "mongodb://localhost:27017/", "paths", "file_path")
+import_to_db(r"E:\Projet6\paths.txt", "mongodb://localhost:27017/", "P6", "file_path")
+import_to_db(r"E:\Projet6\metadata.txt","mongodb://localhost:27017/","P6","file_metadata")

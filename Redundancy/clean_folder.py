@@ -9,6 +9,6 @@ def clean_folder(folder_path):
         # Use the os.remove() function to delete the file
         os.remove(os.path.join(folder_path, file))
 
-    print('All files have been deleted from the folder.')
+    #print('All files have been deleted from the folder.')
 
 clean_folder(f"E:\\Projet6\\Données")

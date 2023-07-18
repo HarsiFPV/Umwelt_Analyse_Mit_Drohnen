@@ -14,6 +14,12 @@ def execute_command2(command):
     # Affiche le résultat dans la zone de texte
     output_text.insert(tk.END, result.stdout)
 
+def execute_command_main(command_main):
+    # Exécute la commande en utilisant la fonction subprocess
+    result = subprocess.run(command_main, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # Affiche le résultat dans la zone de texte
+    output_text.insert(tk.END, result.stdout)
+
 def switch_directory(directory):
     # Change le répertoire de travail courant
     os.chdir(directory)
@@ -27,6 +33,9 @@ window.title("Interface utilisateur")
 button_frame = tk.Frame(window)
 button_frame.pack()
 
+button_execute_command_main = tk.Button(button_frame, text="RUN FULL SCRIPT", command=lambda: execute_command_main(["cmd.exe", "/c", "py.exe C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen\\main.py"]))
+button_execute_command_main.pack()
+
 # Crée un bouton pour changer de répertoire
 button_switch_directory = tk.Button(button_frame, text="0. Switch to directory", command=lambda: switch_directory("C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen"))
 button_switch_directory.pack()
@@ -35,7 +44,7 @@ button_switch_directory.pack()
 button_execute_command = tk.Button(button_frame, text="1. Clean Folder", command=lambda: execute_command(["cmd.exe", "/c", "py.exe .\\Redundancy\\clean_folder.py"]))
 button_execute_command.pack()
 
-button_execute_command2 = tk.Button(button_frame, text="2. ", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths"]))
+button_execute_command2 = tk.Button(button_frame, text="2. Extract File Paths", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths"]))
 button_execute_command2.pack()
 
 # Crée une zone de texte pour afficher les résultats

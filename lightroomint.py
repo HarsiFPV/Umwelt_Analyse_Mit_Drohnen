@@ -1,4 +1,7 @@
-from lightroom import Lightroom
+import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedTk
 
-lr_api = Lightroom(api_key, token)
-catalog = lr_api.catalog_api()
+root = ThemedTk()
+themes = root.get_themes()
+print(themes)

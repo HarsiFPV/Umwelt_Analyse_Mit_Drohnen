@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedTk
 import subprocess
 import os
 
@@ -54,32 +56,32 @@ def switch_directory(directory):
     print("Switched to ", directory)
 
 # Crée une fenêtre principale
-window = tk.Tk()
+window = ThemedTk(theme="ubuntu")
 window.title("Umweltanalyse Benutzeroberfläche")
 
 # Create a frame for the buttons
-button_frame = tk.Frame(window)
+button_frame = ttk.Frame(window)
 button_frame.grid(row=0, column=0, sticky=tk.W)
 
-button_execute_command_main = tk.Button(button_frame, text="RUN FULL SCRIPT", command=lambda: execute_command_main(["cmd.exe", "/c", "py.exe C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen\\main.py"]))
+button_execute_command_main = ttk.Button(button_frame, text="RUN FULL SCRIPT", command=lambda: execute_command_main(["cmd.exe", "/c", "py.exe C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen\\main.py"]))
 
 
 # Crée un bouton pour changer de répertoire
-button_switch_directory = tk.Button(button_frame, text="0. Switch to directory", command=lambda: switch_directory("C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen"))
+button_switch_directory = ttk.Button(button_frame, text="0. Switch to directory", command=lambda: switch_directory("C:\\Users\\Tristan\\PycharmProjects\\pythonProject\\umweltanalysemktdrohnen"))
 
 
 # Crée un bouton pour exécuter une commande
-button_execute_command = tk.Button(button_frame, text="1. Clean Folder", command=lambda: execute_command(["cmd.exe", "/c", "py.exe .\\Redundancy\\clean_folder.py"]))
+button_execute_command = ttk.Button(button_frame, text="1. Clean Folder", command=lambda: execute_command(["cmd.exe", "/c", "py.exe .\\Redundancy\\clean_folder.py"]))
 
-button_execute_command2 = tk.Button(button_frame, text="2. Extract File Paths", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths.py"]))
+button_execute_command2 = ttk.Button(button_frame, text="2. Extract File Paths", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths.py"]))
 
-button_execute_command3 = tk.Button(button_frame, text="3. Extract Photos Metadatas", command=lambda: execute_command3(["cmd.exe", "/c", "py.exe .\\metadata\\extract_metadata.py"]))
+button_execute_command3 = ttk.Button(button_frame, text="3. Extract Photos Metadatas", command=lambda: execute_command3(["cmd.exe", "/c", "py.exe .\\metadata\\extract_metadata.py"]))
 
-button_execute_command4 = tk.Button(button_frame, text="4. Import File Paths To DB", command=lambda: execute_command4(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_paths.py"]))
+button_execute_command4 = ttk.Button(button_frame, text="4. Import File Paths To DB", command=lambda: execute_command4(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_paths.py"]))
 
-button_execute_command5 = tk.Button(button_frame, text="5. Import File Metadatas To DB", command=lambda: execute_command5(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_metadata.py"]))
+button_execute_command5 = ttk.Button(button_frame, text="5. Import File Metadatas To DB", command=lambda: execute_command5(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_metadata.py"]))
 
-button_execute_command6 = tk.Button(button_frame, text="DEBUG : Clear DB", command=lambda: execute_command6(["cmd.exe", "/c", "py.exe .\\Database\\clearDB.py"]))
+button_execute_command6 = ttk.Button(button_frame, text="DEBUG : Clear DB", command=lambda: execute_command6(["cmd.exe", "/c", "py.exe .\\Database\\clearDB.py"]))
 
 # Position the other buttons using grid()
 button_execute_command_main.grid(row=0, column=0, sticky=tk.NW)
@@ -92,11 +94,11 @@ button_execute_command5.grid(row=6, column=0, sticky=tk.NW)
 button_execute_command6.grid(row=7, column=0, sticky=tk.NW)
 
 # Create a button to clear the console
-button_clear_console = tk.Button(window, text="Clear Console", command=clear_console)
+button_clear_console = ttk.Button(window, text="Clear Console", command=clear_console)
 button_clear_console.grid(row=0, column=1, sticky=tk.SE)
 
 # Create a text widget to display the results
-output_text = tk.Text(window, height=50, width=100)
+output_text = tk.Text(window, height=30, width=100)
 output_text.grid(row=1, column=0, columnspan=2, sticky=tk.W)
 
 # Create a text widget to display the console

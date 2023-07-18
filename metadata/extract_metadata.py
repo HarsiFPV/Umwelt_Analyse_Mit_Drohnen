@@ -12,6 +12,17 @@ def extract_image_metadata(image_folder_path, output_file):
         for image_file in image_list:
             image_path = os.path.join(image_folder_path, image_file)
             data = gpsphoto.getGPSData(image_path)
-            f.write(f"File: {image_file} "+"GPS Data: "+str(data)+"\n")
 
-extract_image_metadata(f"E:\Projet6", f"metadata.txt")
+            # Transformation des données GPS
+            new_data = {
+                "GPS": {
+                    "latitude": data.get("Latitude"),
+                    "longitude": data.get("Longitude"),
+                    "altitude": data.get("Altitude")
+                }
+            }
+
+            # Écriture dans le fichier texte
+            f.write(f"File: {image_file} GPS Data: {new_data}\n")
+
+extract_image_metadata(f"E:\Projet6\Photos", f"E:\Projet6\Données\metadata.txt")

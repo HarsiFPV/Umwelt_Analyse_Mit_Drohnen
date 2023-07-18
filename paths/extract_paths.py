@@ -11,4 +11,4 @@ def extract_path(path, output_file):
             f.write(file_path)
             f.write('\n')
 
-extract_path(f"E:\Projet6", f"E:\Projet6\paths.txt")
+extract_path(f"E:\Projet6\Photos", f"E:\Projet6\Données\paths.txt")

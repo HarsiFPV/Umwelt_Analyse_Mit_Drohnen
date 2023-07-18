@@ -89,6 +89,7 @@ button_execute_command2.grid(row=3, column=0, sticky=tk.NW)
 button_execute_command3.grid(row=4, column=0, sticky=tk.NW)
 button_execute_command4.grid(row=5, column=0, sticky=tk.NW)
 button_execute_command5.grid(row=6, column=0, sticky=tk.NW)
+button_execute_command6.grid(row=7, column=0, sticky=tk.NW)
 
 # Create a button to clear the console
 button_clear_console = tk.Button(window, text="Clear Console", command=clear_console)

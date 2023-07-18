@@ -5,8 +5,8 @@ hostname = '192.168.1.82'
 port = 22
 username = 'Tristan'
 password = 'Mouks'
-remote_dir = "E:\TestProjet"
-local_dir = "C:/path/to/local/dir"
+remote_dir = 'E:\TestProjet'
+local_dir = 'C:\\Users\\Tristan\\Documents\\P5\\testcopy'
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())

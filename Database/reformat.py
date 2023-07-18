@@ -26,5 +26,4 @@ def delete_non_matching_paths(client, path_prefix):
 client = pymongo.MongoClient(url)
 test_connection(client)
 
-# Example usage
-delete_non_matching_paths(client, r"D:\\DCIM\\100MEDIA\\")
+delete_non_matching_paths(client, r"E:\\Projet6\\DJI")

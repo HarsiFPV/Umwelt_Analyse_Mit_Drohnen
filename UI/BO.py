@@ -50,6 +50,18 @@ def execute_command7(command7):
     # Affiche le résultat dans la zone de texte
     output_text.insert(tk.END, "Retrieved Photos From Drive\n---------------\n")
 
+def execute_command8(command8):
+    # Exécute la commande en utilisant la fonction subprocess
+    result = subprocess.run(command8, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # Affiche le résultat dans la zone de texte
+    output_text.insert(tk.END, "Deleted Old Map || Created New Map\n---------------\n")
+
+def execute_command9(command9):
+    # Exécute la commande en utilisant la fonction subprocess
+    result = subprocess.run(command9, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # Affiche le résultat dans la zone de texte
+    output_text.insert(tk.END, "Map Opened In Browser\n---------------\n")
+
 def execute_command_main(command_main):
     # Exécute la commande en utilisant la fonction subprocess
     result = subprocess.run(command_main, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -92,16 +104,26 @@ button_execute_command6 = ttk.Button(button_frame, text="DEBUG : Clear DB", comm
 
 button_execute_command7 = ttk.Button(button_frame, text="1. Retrieve Photos From Drive", command=lambda: execute_command7(["cmd.exe", "/c", "py.exe .\\Redundancy\\retrievePhotos.py"]))
 
+button_execute_command8 = ttk.Button(button_frame, text="7. Generate Map", command=lambda: execute_command8(["cmd.exe", "/c", "py.exe .\\Map\\map.py"]))
+
+button_execute_command9 = ttk.Button(button_frame, text="OPEN MAP", command=lambda: execute_command9(["cmd.exe", "/c", "E:\Projet6\Map\map.html"]))
+
 # Position the other buttons using grid()
 button_execute_command_main.grid(row=0, column=0, sticky=tk.NW)
 button_switch_directory.grid(row=1, column=0, sticky=tk.NW)
+button_execute_command7.grid(row=2, column=0, sticky=tk.NW)
 button_execute_command.grid(row=3, column=0, sticky=tk.NW)
 button_execute_command2.grid(row=4, column=0, sticky=tk.NW)
 button_execute_command3.grid(row=5, column=0, sticky=tk.NW)
 button_execute_command4.grid(row=6, column=0, sticky=tk.NW)
 button_execute_command5.grid(row=7, column=0, sticky=tk.NW)
-button_execute_command6.grid(row=8, column=0, sticky=tk.NW)
-button_execute_command7.grid(row=2, column=0, sticky=tk.NW)
+button_execute_command8.grid(row=8, column=0, sticky=tk.NW)
+button_execute_command9.grid(row=9, column=0, sticky=tk.NW)
+button_execute_command6.grid(row=10, column=0, sticky=tk.NW)
+
+
+
+
 
 # Create a button to clear the console
 button_clear_console = ttk.Button(window, text="Clear Console", command=clear_console)

@@ -6,7 +6,7 @@ def extract_image_metadata(image_folder_path, output_file):
 
     os.chdir(image_folder_path)
     image_list = os.listdir()
-    image_list = [a for a in image_list if a.endswith('.JPG')]
+    image_list = [a for a in image_list if a.endswith('.JPG') | a.endswith('.jpg')]
 
     with open(output_file, 'w') as f:
         for image_file in image_list:

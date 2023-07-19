@@ -1,5 +1,5 @@
 from paths import extract_paths
-from Redundancy import clean_folder
+from Redundancy import clean_folder, retrievePhotos
 import time
 
 def main():
@@ -9,6 +9,11 @@ def main():
     # Nettoyer le dossier
     clean_folder.clean_folder(r"E:\Projet6\Données")
     print("Folder has been cleaned\n------------------------------")
+
+    time.sleep(0.5)
+
+    retrievePhotos.copy_and_delete_files(f"E:\Drive\p6", f"E:\Projet6\Photos")
+    print("New photos have been retrieved\n------------------------------")
 
     time.sleep(1)
 

@@ -44,6 +44,12 @@ def execute_command6(command6):
     # Affiche le résultat dans la zone de texte
     output_text.insert(tk.END, "Cleared DB\n---------------\n")
 
+def execute_command7(command7):
+    # Exécute la commande en utilisant la fonction subprocess
+    result = subprocess.run(command7, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    # Affiche le résultat dans la zone de texte
+    output_text.insert(tk.END, "Retrieved Photos From Drive\n---------------\n")
+
 def execute_command_main(command_main):
     # Exécute la commande en utilisant la fonction subprocess
     result = subprocess.run(command_main, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -53,7 +59,8 @@ def execute_command_main(command_main):
 def switch_directory(directory):
     # Change le répertoire de travail courant
     os.chdir(directory)
-    print("Switched to ", directory)
+    output_text.insert(tk.END, "Switched to "+directory+"\n---------------\n")
+
 
 # Crée une fenêtre principale
 window = ThemedTk(theme="ubuntu")
@@ -71,27 +78,30 @@ button_switch_directory = ttk.Button(button_frame, text="0. Switch to directory"
 
 
 # Crée un bouton pour exécuter une commande
-button_execute_command = ttk.Button(button_frame, text="1. Clean Folder", command=lambda: execute_command(["cmd.exe", "/c", "py.exe .\\Redundancy\\clean_folder.py"]))
+button_execute_command = ttk.Button(button_frame, text="2. Clean Folder", command=lambda: execute_command(["cmd.exe", "/c", "py.exe .\\Redundancy\\clean_folder.py"]))
 
-button_execute_command2 = ttk.Button(button_frame, text="2. Extract File Paths", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths.py"]))
+button_execute_command2 = ttk.Button(button_frame, text="3. Extract File Paths", command=lambda: execute_command2(["cmd.exe", "/c", "py.exe .\\paths\\extract_paths.py"]))
 
-button_execute_command3 = ttk.Button(button_frame, text="3. Extract Photos Metadatas", command=lambda: execute_command3(["cmd.exe", "/c", "py.exe .\\metadata\\extract_metadata.py"]))
+button_execute_command3 = ttk.Button(button_frame, text="4. Extract Photos Metadatas", command=lambda: execute_command3(["cmd.exe", "/c", "py.exe .\\metadata\\extract_metadata.py"]))
 
-button_execute_command4 = ttk.Button(button_frame, text="4. Import File Paths To DB", command=lambda: execute_command4(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_paths.py"]))
+button_execute_command4 = ttk.Button(button_frame, text="5. Import File Paths To DB", command=lambda: execute_command4(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_paths.py"]))
 
-button_execute_command5 = ttk.Button(button_frame, text="5. Import File Metadatas To DB", command=lambda: execute_command5(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_metadata.py"]))
+button_execute_command5 = ttk.Button(button_frame, text="6. Import File Metadatas To DB", command=lambda: execute_command5(["cmd.exe", "/c", "py.exe .\\Database\\import_to_db_metadata.py"]))
 
 button_execute_command6 = ttk.Button(button_frame, text="DEBUG : Clear DB", command=lambda: execute_command6(["cmd.exe", "/c", "py.exe .\\Database\\clearDB.py"]))
+
+button_execute_command7 = ttk.Button(button_frame, text="1. Retrieve Photos From Drive", command=lambda: execute_command7(["cmd.exe", "/c", "py.exe .\\Redundancy\\retrievePhotos.py"]))
 
 # Position the other buttons using grid()
 button_execute_command_main.grid(row=0, column=0, sticky=tk.NW)
 button_switch_directory.grid(row=1, column=0, sticky=tk.NW)
-button_execute_command.grid(row=2, column=0, sticky=tk.NW)
-button_execute_command2.grid(row=3, column=0, sticky=tk.NW)
-button_execute_command3.grid(row=4, column=0, sticky=tk.NW)
-button_execute_command4.grid(row=5, column=0, sticky=tk.NW)
-button_execute_command5.grid(row=6, column=0, sticky=tk.NW)
-button_execute_command6.grid(row=7, column=0, sticky=tk.NW)
+button_execute_command.grid(row=3, column=0, sticky=tk.NW)
+button_execute_command2.grid(row=4, column=0, sticky=tk.NW)
+button_execute_command3.grid(row=5, column=0, sticky=tk.NW)
+button_execute_command4.grid(row=6, column=0, sticky=tk.NW)
+button_execute_command5.grid(row=7, column=0, sticky=tk.NW)
+button_execute_command6.grid(row=8, column=0, sticky=tk.NW)
+button_execute_command7.grid(row=2, column=0, sticky=tk.NW)
 
 # Create a button to clear the console
 button_clear_console = ttk.Button(window, text="Clear Console", command=clear_console)

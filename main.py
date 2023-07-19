@@ -30,6 +30,7 @@ def main():
     time.sleep(1)
 
     from Database import import_to_db_paths, import_to_db_metadata
+
     # Importer les chemins dans la base de données
     import_to_db_paths.import_to_db_paths(r"E:\Projet6\Données\paths.txt", "mongodb://localhost:27017/", "P6", "file_path")
     print("Paths imported to DB\n------------------------------")
@@ -39,6 +40,13 @@ def main():
     print("GPS Metadata imported to DB\n------------------------------")
 
     time.sleep(1)
+
+    from Map import map
+
+    map.map(f"E:\\Projet6\\Map", f"E:\Projet6\Données\metadata.txt")
+    print("Old Map deleted\n------------------------------")
+    print("New map generated\n------------------------------")
+
     print("|--DONE--|")
 
 # Exécuter la fonction principale

@@ -4,7 +4,7 @@ import pymongo
 import os
 import re
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
@@ -51,8 +51,6 @@ def map(folder_path, start_date, end_date):
         start_date = datetime.min
         end_date = datetime.max
 
-    print(start_date,end_date)
-
     for document in data:
         gps_data = document.get("data", {}).get("GPS", {})
         latitude = gps_data.get("latitude", 0)
@@ -67,13 +65,12 @@ def map(folder_path, start_date, end_date):
             # Check if the date_taken_str is not empty or None before splitting
             if date_taken_str and date_taken_str.strip():
                 date_taken = datetime.strptime(date_taken_str.split()[0], "%Y:%m:%d")
+                print(start_date, date_taken, end_date)
 
                 # Check if the photo's date is within the specified date range
-                if (start_date is None or start_date <= date_taken) and (end_date is None or date_taken <= end_date):
+                if start_date <= date_taken <= end_date:
                     folium.Marker([photo_lat, photo_lon], popup=file_name).add_to(carte)
-            else:
-                # If date_taken_str is empty or None, include the photo in the map
-                folium.Marker([photo_lat, photo_lon], popup=file_name).add_to(carte)
+
 
     carte.save(f"E:\\Projet6\\Map\\map.html")
 

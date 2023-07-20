@@ -65,7 +65,7 @@ def map(folder_path, start_date, end_date):
             # Check if the date_taken_str is not empty or None before splitting
             if date_taken_str and date_taken_str.strip():
                 date_taken = datetime.strptime(date_taken_str.split()[0], "%Y:%m:%d")
-                print(start_date, date_taken, end_date)
+                #print(start_date, date_taken, end_date)
 
                 # Check if the photo's date is within the specified date range
                 if start_date <= date_taken <= end_date:

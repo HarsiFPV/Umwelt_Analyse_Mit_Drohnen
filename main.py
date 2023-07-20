@@ -1,6 +1,19 @@
 from paths import extract_paths
 from Redundancy import clean_folder, retrievePhotos
 import time
+import subprocess
+
+start_date = "0001:01:01"
+end_date = "9999:12:31"
+folder_path = r"E:\Projet6\Map"
+
+def execute_shell_command(command):
+    try:
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Erreur lors de l'exécution de la commande : {e}")
+    except Exception as e:
+        print(f"Une erreur inattendue s'est produite : {e}")
 
 def main():
 
@@ -43,7 +56,16 @@ def main():
 
     from Map import map
 
-    map.map(f"E:\\Projet6\\Map", f"E:\Projet6\Données\metadata.txt")
+    folder_path = r"E:\Projet6\Map"
+
+    command = [
+        "python",
+        r"C:\Users\Tristan\PycharmProjects\pythonProject\umweltanalysemktdrohnen\Map\map.py",
+        folder_path, start_date, end_date
+    ]
+
+    execute_shell_command(" ".join(command))
+
     print("Old Map deleted\n------------------------------")
     print("New map generated\n------------------------------")
 

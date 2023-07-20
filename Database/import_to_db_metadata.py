@@ -5,49 +5,52 @@ def import_to_db_metadata(txt_file, url, db, collection_name):
     client = pymongo.MongoClient(url)
 
     # Select the database
-    db = client[db]
+    database = client[db]
 
-    collection = db[collection_name]
+    # Check if the collection exists
+    if collection_name not in database.list_collection_names():
+        # Create the collection if it doesn't exist
+        collection = database[collection_name]
+    else:
+        # Collection already exists, use the existing collection
+        collection = database[collection_name]
 
     with open(txt_file, 'r') as f:
         for line in f:
-            # Extraction des informations de ligne
-            file_info, gps_info = line.split("GPS Data: ")
-            _, file_name = file_info.strip().split("File: ")
-            gps_data = eval(gps_info.strip())
+            # Check if the line starts with "Image Metadata: "
+            if line.startswith("Image Metadata: "):
+                # Extract the JSON part from the line
+                json_data = line[len("Image Metadata: "):]
 
-            # Accès aux données de latitude, longitude et altitude
-            gps_info = gps_data["GPS"]
-            latitude = gps_info["latitude"]
-            longitude = gps_info["longitude"]
-            altitude = gps_info["altitude"]
+                # Convert the JSON string to a Python dictionary
+                data = eval(json_data)
 
-            # Recherche d'un document avec le même nom de fichier dans la collection
-            existing_document = collection.find_one({"data.File": file_name})
+                # Extract the required fields
+                file_name = data["File"]
+                latitude = data["GPS"]["Latitude"]
+                longitude = data["GPS"]["Longitude"]
+                altitude = data["GPS"]["Altitude"]
+                date = data["DateTaken"]
 
-            # Si un document avec le même nom de fichier existe, mise à jour des données GPS
-            if existing_document:
-                collection.update_one(
-                    {"data.File": file_name},
-                    {"$set": {
-                        "data.GPS.latitude": latitude,
-                        "data.GPS.longitude": longitude,
-                        "data.GPS.altitude": altitude
-                    }}
-                )
-            else:
-                # Création du document à insérer dans la collection
-                document = {
-                    "data": {
-                        "File": file_name,
-                        "GPS": {
-                            "latitude": latitude,
-                            "longitude": longitude,
-                            "altitude": altitude
+                # Recherche d'un document avec le même nom de fichier dans la collection
+                existing_document = collection.find_one({"data.File": file_name})
+
+                # Si un document avec le même nom de fichier n'existe pas, l'importer
+                if not existing_document:
+                    # Création du document à insérer dans la collection
+                    document = {
+                        "data": {
+                            "File": file_name,
+                            "GPS": {
+                                "latitude": latitude,
+                                "longitude": longitude,
+                                "altitude": altitude
+                            },
+                            "DateTaken": date
                         }
                     }
-                }
-                # Insertion du document dans la collection MongoDB
-                collection.insert_one(document)
+                    # Insertion du document dans la collection MongoDB
+                    collection.insert_one(document)
 
-import_to_db_metadata(r"E:\Projet6\Données\metadata.txt","mongodb://localhost:27017/","P6","file_metadata")
+
+import_to_db_metadata(r"E:\Projet6\Données\metadata.txt", "mongodb://localhost:27017/", "P6", "file_metadata")

@@ -111,7 +111,7 @@ def init_gui():
         result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
         # Display the result in the output_text widget
-        output_text.insert(tk.END, result.stdout)
+        output_text.insert(tk.END, "Placed photos taken between " + start_date_str + " and " + end_date_str + " on the map\n---------------\n")
 
     def execute_command9(command9):
         # Exécute la commande en utilisant la fonction subprocess
@@ -191,7 +191,7 @@ def init_gui():
     entry_variable1.grid(row=13, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la première variable
-    button_set_variable1 = customtkinter.CTkButton(window, text="Définir Variable 1", command=set_variable1)
+    button_set_variable1 = customtkinter.CTkButton(window, text="Set Start Date", command=set_variable1)
     button_set_variable1.grid(row=13, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Attach the on_start_date_change function to track changes to startDate
@@ -206,7 +206,7 @@ def init_gui():
     entry_variable2.grid(row=15, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la deuxième variable
-    button_set_variable2 = customtkinter.CTkButton(window, text="Définir Variable 2", command=set_variable2)
+    button_set_variable2 = customtkinter.CTkButton(window, text="Set End Date", command=set_variable2)
     button_set_variable2.grid(row=15, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Attach the on_end_date_change function to track changes to endDate

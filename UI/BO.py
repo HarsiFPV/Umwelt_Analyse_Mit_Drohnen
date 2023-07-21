@@ -165,6 +165,9 @@ def init_gui():
 
     button_execute_command9 = customtkinter.CTkButton(window, text="OPEN MAP", command=lambda: execute_command9(["cmd.exe", "/c", "E:\Projet6\Map\map.html"]))
 
+    button_execute_command10 = customtkinter.CTkButton(window, text="Generate New Map Using Dates", command=lambda: execute_command8(
+        ["cmd.exe", "/c", "E:\Projet6\Map\map.html"]))
+
     # Position the other buttons using grid()
     button_execute_command_main.grid(row=0, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
     button_switch_directory.grid(row=1, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
@@ -177,6 +180,7 @@ def init_gui():
     button_execute_command8.grid(row=8, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
     button_execute_command9.grid(row=9, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
     button_execute_command6.grid(row=10, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
+    button_execute_command10.grid(row=16, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Create a button to clear the console
     button_clear_console = customtkinter.CTkButton(window, text="Clear Console", command=clear_console)

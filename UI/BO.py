@@ -9,10 +9,12 @@ from datetime import datetime
 window = customtkinter.CTk()
 startDate = tk.StringVar()
 endDate = tk.StringVar()
+show_debug_buttons = False
 
 def init_gui():
 
     global entry_variable1, entry_variable2
+
 
 #    def on_start_date_change(*args):
 #        # This function will be called whenever the start date changes
@@ -130,6 +132,36 @@ def init_gui():
         os.chdir(directory)
         output_text.insert(tk.END, "Switched to " + directory + "\n---------------\n")
 
+    def toggle_debug_buttons():
+        global show_debug_buttons
+        show_debug_buttons = not show_debug_buttons
+        if show_debug_buttons:
+            show_buttons()
+        else:
+            hide_buttons()
+
+    def show_buttons():
+        button_switch_directory.grid(row=2, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command7.grid(row=3, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command.grid(row=4, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command2.grid(row=5, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command3.grid(row=6, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command4.grid(row=7, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command5.grid(row=8, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command8.grid(row=9, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+        button_execute_command6.grid(row=11, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.SW)
+
+    def hide_buttons():
+        button_execute_command7.grid_forget()
+        button_execute_command8.grid_forget()
+        button_switch_directory.grid_forget()
+        button_execute_command.grid_forget()
+        button_execute_command2.grid_forget()
+        button_execute_command3.grid_forget()
+        button_execute_command4.grid_forget()
+        button_execute_command5.grid_forget()
+        button_execute_command6.grid_forget()
+
     customtkinter.set_default_color_theme("green")
 
     # Crée une fenêtre principale
@@ -170,21 +202,16 @@ def init_gui():
 
     # Position the other buttons using grid()
     button_execute_command_main.grid(row=0, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_switch_directory.grid(row=1, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command7.grid(row=2, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command.grid(row=3, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command2.grid(row=4, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command3.grid(row=5, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command4.grid(row=6, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command5.grid(row=7, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command8.grid(row=8, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command9.grid(row=9, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command6.grid(row=10, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
-    button_execute_command10.grid(row=16, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
+    button_execute_command9.grid(row=1, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
+
+    button_execute_command10.grid(row=16, column=0, pady=(15, 15), padx=(5, 15), sticky="NW")
+
+    button_toggle_debug = customtkinter.CTkButton(window, text="Show Debug Functions", command=toggle_debug_buttons, font=("Arial", 15))
+    button_toggle_debug.grid(row=0, column=1, padx=(10, 10), pady=(15, 15), sticky=tk.NE)
 
     # Create a button to clear the console
-    button_clear_console = customtkinter.CTkButton(window, text="Clear Console", command=clear_console)
-    button_clear_console.grid(row=10, column=1, padx=(10, 10), pady=(15, 15), sticky=tk.NE)
+    button_clear_console = customtkinter.CTkButton(window, text="Clear Console", command=clear_console, font=("Arial", 15))
+    button_clear_console.grid(row=1, column=1, padx=(10, 10), pady=(15, 15), sticky=tk.NE)
 
     # Créer un libellé pour le premier champ d'entrée
     label_variable1 = customtkinter.CTkLabel(window, text="Start Date format : yyyy:mm:dd", font=("Arial", 15))
@@ -195,7 +222,7 @@ def init_gui():
     entry_variable1.grid(row=13, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la première variable
-    button_set_variable1 = customtkinter.CTkButton(window, text="Set Start Date", command=set_variable1)
+    button_set_variable1 = customtkinter.CTkButton(window, text="Set Start Date", command=set_variable1, font=("Arial", 15))
     button_set_variable1.grid(row=13, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Attach the on_start_date_change function to track changes to startDate
@@ -210,7 +237,7 @@ def init_gui():
     entry_variable2.grid(row=15, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la deuxième variable
-    button_set_variable2 = customtkinter.CTkButton(window, text="Set End Date", command=set_variable2)
+    button_set_variable2 = customtkinter.CTkButton(window, text="Set End Date", command=set_variable2, font=("Arial", 15))
     button_set_variable2.grid(row=15, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Attach the on_end_date_change function to track changes to endDate

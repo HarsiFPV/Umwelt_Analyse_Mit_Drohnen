@@ -198,13 +198,13 @@ def init_gui():
     button_execute_command9 = customtkinter.CTkButton(window, text="OPEN MAP", command=lambda: execute_command9(["cmd.exe", "/c", "E:\Projet6\Map\map.html"]))
 
     button_execute_command10 = customtkinter.CTkButton(window, text="Generate New Map Using Dates", command=lambda: execute_command8(
-        ["cmd.exe", "/c", "E:\Projet6\Map\map.html"]))
+        ["cmd.exe", "/c", "E:\Projet6\Map\map.html"], font=("Arial", 15)))
 
     # Position the other buttons using grid()
     button_execute_command_main.grid(row=0, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
     button_execute_command9.grid(row=1, column=0, padx=(10, 10), pady=(10, 10), sticky=tk.NW)
 
-    button_execute_command10.grid(row=16, column=0, pady=(15, 15), padx=(5, 15), sticky="NW")
+    button_execute_command10.grid(row=17, column=0, pady=(15, 15), padx=(5, 15), sticky="NW")
 
     button_toggle_debug = customtkinter.CTkButton(window, text="Show Debug Functions", command=toggle_debug_buttons, font=("Arial", 15))
     button_toggle_debug.grid(row=0, column=1, padx=(10, 10), pady=(15, 15), sticky=tk.NE)
@@ -214,38 +214,38 @@ def init_gui():
     button_clear_console.grid(row=1, column=1, padx=(10, 10), pady=(15, 15), sticky=tk.NE)
 
     # Créer un libellé pour le premier champ d'entrée
-    label_variable1 = customtkinter.CTkLabel(window, text="Start Date format : yyyy:mm:dd", font=("Arial", 15))
-    label_variable1.grid(row=12, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
+    label_variable1 = customtkinter.CTkLabel(window, text="Start Date format : yyyy:mm:dd", font=("Arial", 15),  fg_color=("grey25"), corner_radius=8)
+    label_variable1.grid(row=13, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un champ d'entrée pour la première variable
     entry_variable1 = customtkinter.CTkEntry(window, textvariable=startDate, width=90, font=("Arial", 15))
-    entry_variable1.grid(row=13, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
+    entry_variable1.grid(row=14, column=0, pady=(15, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la première variable
     button_set_variable1 = customtkinter.CTkButton(window, text="Set Start Date", command=set_variable1, font=("Arial", 15))
-    button_set_variable1.grid(row=13, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
+    button_set_variable1.grid(row=14, column=1, pady=(15, 5), padx=(5, 10), sticky="NE")
 
     # Attach the on_start_date_change function to track changes to startDate
 #    startDate.trace_add('write', on_start_date_change)
 
     # Créer un libellé pour le deuxième champ d'entrée
-    label_variable2 = customtkinter.CTkLabel(window, text="End Date format: yyyy:mm:dd", font=("Arial", 15))
-    label_variable2.grid(row=14, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
+    label_variable2 = customtkinter.CTkLabel(window, text="End Date format: yyyy:mm:dd", font=("Arial", 15), fg_color=("grey25"), corner_radius=8)
+    label_variable2.grid(row=15, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un champ d'entrée pour la deuxième variable
     entry_variable2 = customtkinter.CTkEntry(window, textvariable=endDate, width=90, font=("Arial", 15))
-    entry_variable2.grid(row=15, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
+    entry_variable2.grid(row=16, column=0, pady=(5, 5), padx=(5, 5), sticky="NW")
 
     # Créer un bouton pour définir la deuxième variable
     button_set_variable2 = customtkinter.CTkButton(window, text="Set End Date", command=set_variable2, font=("Arial", 15))
-    button_set_variable2.grid(row=15, column=1, pady=(5, 5), padx=(5, 5), sticky="NW")
+    button_set_variable2.grid(row=16, column=1, pady=(5, 5), padx=(5, 10), sticky="NE")
 
     # Attach the on_end_date_change function to track changes to endDate
 #    endDate.trace_add('write', on_end_date_change)
 
     # Create a text widget to display the results
     output_text = customtkinter.CTkTextbox(window, height=300, width=500, wrap=tk.WORD, font=("Arial", 15))
-    output_text.grid(row=11, column=0, columnspan=2, sticky=tk.S)
+    output_text.grid(row=12, column=0, columnspan=2, sticky=tk.S)
 
     # Create a text widget to display the console
     # console_text = customtkinter.CTkTextbox(window, height=100, width=100, wrap=tk.WORD, font=("Arial", 11))

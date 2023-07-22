@@ -13,12 +13,10 @@ def extract_image_metadata(image_folder_path, output_file):
             data = gpsphoto.getGPSData(image_path)
             tags = exifread.process_file(open(image_path, 'rb'))
 
-            # Extract date information from EXIF data
             date_taken = None
             if 'EXIF DateTimeOriginal' in tags:
                 date_taken = tags['EXIF DateTimeOriginal']
 
-            # Transformation des données GPS et date
             new_data = {
                 "File": image_file,
                 "GPS": {
@@ -29,7 +27,6 @@ def extract_image_metadata(image_folder_path, output_file):
                 "DateTaken": str(date_taken)
             }
 
-            # Écriture dans le fichier texte
             f.write(f"Image Metadata: {new_data}\n")
 
 extract_image_metadata(r"E:\Projet6\Photos", r"E:\Projet6\Données\metadata.txt")

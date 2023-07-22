@@ -21,9 +21,7 @@ def map(folder_path, start_date, end_date):
 
     files = os.listdir(folder_path)
 
-    # Iterate through the list of files
     for file in files:
-        # Use the os.remove() function to delete the file
         os.remove(os.path.join(folder_path, file))
 
     time.sleep(1)
@@ -58,14 +56,12 @@ def map(folder_path, start_date, end_date):
         file_name = document.get("data", {}).get("File", "")
         date_taken_str = document.get("data", {}).get("DateTaken", "")
 
-        # Vérification des coordonnées GPS non nulles
         if latitude != 0 and longitude != 0:
             photo_lat, photo_lon = float(latitude), float(longitude)
 
             # Check if the date_taken_str is not empty or None before splitting
             if date_taken_str and date_taken_str.strip():
                 date_taken = datetime.strptime(date_taken_str.split()[0], "%Y:%m:%d")
-                #print(start_date, date_taken, end_date)
 
                 # Check if the photo's date is within the specified date range
                 if start_date <= date_taken <= end_date:
@@ -73,9 +69,6 @@ def map(folder_path, start_date, end_date):
 
 
     carte.save(f"E:\\Projet6\\Map\\map.html")
-
-#map(f"E:\\Projet6\\Map", f"E:\\Projet6\\Données\\metadata.txt", "2023:07:19", "2023:07:19")
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

@@ -14,4 +14,5 @@ def copy_and_delete_files(source_dir, destination_dir):
         shutil.copy(source_file, destination_file)
         os.remove(source_file)
 
-copy_and_delete_files(f"E:\Drive\p6", f"E:\Projet6\Photos")
+
+copy_and_delete_files(r"G:\Mon Drive\p6", r"C:\P6\Photos")

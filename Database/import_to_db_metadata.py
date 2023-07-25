@@ -44,4 +44,4 @@ def import_to_db_metadata(txt_file, url, db, collection_name):
                     collection.insert_one(document)
 
 
-import_to_db_metadata(r"E:\Projet6\Données\metadata.txt", "mongodb://localhost:27017/", "P6", "file_metadata")
+import_to_db_metadata(r"C:\P6\Data\metadata.txt", "mongodb://localhost:27017/", "P6", "file_metadata")

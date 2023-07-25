@@ -67,8 +67,8 @@ def map(folder_path, start_date, end_date):
                 if start_date <= date_taken <= end_date:
                     folium.Marker([photo_lat, photo_lon], popup=file_name).add_to(carte)
 
+    carte.save(r"C:\P6\Map\map.html")
 
-    carte.save(f"E:\\Projet6\\Map\\map.html")
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

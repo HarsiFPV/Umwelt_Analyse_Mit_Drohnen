@@ -22,5 +22,5 @@ def import_to_db_paths(txt_file, url, db, collection):
         document = {"data": line}
         collection.insert_one(document)
 
-import_to_db_paths(r"E:\Projet6\Données\paths.txt", "mongodb://localhost:27017/", "P6", "file_path")
 
+import_to_db_paths(r"C:\P6\Data\paths.txt", "mongodb://localhost:27017/", "P6", "file_path")

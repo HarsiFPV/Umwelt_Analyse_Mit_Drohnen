@@ -29,4 +29,5 @@ def extract_image_metadata(image_folder_path, output_file):
 
             f.write(f"Image Metadata: {new_data}\n")
 
-extract_image_metadata(r"E:\Projet6\Photos", r"E:\Projet6\Données\metadata.txt")
+
+extract_image_metadata(r"C:\P6\Photos", r"C:\P6\Data\metadata.txt")
